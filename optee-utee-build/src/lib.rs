@@ -15,11 +15,17 @@
 // specific language governing permissions and limitations
 // under the License.
 
-use proto;
-use optee_utee_build::{TAConfig, RustEdition, Error};
+mod builder;
+mod code_generator;
+mod error;
+mod ta;
 
-fn main() -> Result<(), Error> {
-    let config = TAConfig::new_standard("0.1", "This is a hello world example.", "Hello World TA");
-    optee_utee_build::build(RustEdition::Before2024, proto::UUID, config)
+pub use builder::*;
+pub use code_generator::RustEdition;
+pub use error::Error;
+pub use ta::*;
 
+pub fn build(edition: RustEdition, uuid: &str, config: TAConfig) -> Result<(), Error> {
+    let build_config = Config::new(edition, config);
+    build_config.build(uuid)
 }

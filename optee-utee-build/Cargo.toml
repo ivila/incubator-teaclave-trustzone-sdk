@@ -15,20 +15,18 @@
 # specific language governing permissions and limitations
 # under the License.
 
-header:
-  license:
-    spdx-id: Apache-2.0
-    copyright-owner: Apache Software Foundation
+[package]
+name = "optee-utee-build"
+version = "0.2.0"
+authors = ["Teaclave Contributors <dev@teaclave.apache.org>"]
+license = "Apache-2.0"
+repository = "https://github.com/apache/incubator-teaclave-trustzone-sdk.git"
+edition = "2018"
+description = "Build tool for TA"
 
-  paths-ignore:
-    - 'dist'
-    - 'licenses'
-    - '**/*.md'
-    - 'LICENSE'
-    - 'NOTICE'
-    - '**/Cargo.lock'
-    - 'KEYS'
-    - 'DISCLAIMER-WIP'
-    - '*.json'
-    - 'examples/tls_server-rs/ta/test-ca/**'
-    - 'optee-utee-build/test_files/**'
+[dependencies]
+uuid = "1.11.0"
+quote = "1.0.37"
+proc-macro2 = "1.0.92"
+syn = "2.0.90"
+prettyplease = "0.2.25"

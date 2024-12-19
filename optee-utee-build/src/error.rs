@@ -15,11 +15,28 @@
 // specific language governing permissions and limitations
 // under the License.
 
-use proto;
-use optee_utee_build::{TAConfig, RustEdition, Error};
+#[derive(Debug)]
+pub enum Error {
+    Env(std::env::VarError),
+    IO(std::io::Error),
+    UUID(uuid::Error),
+    PropertyNotFound(String),
+}
 
-fn main() -> Result<(), Error> {
-    let config = TAConfig::new_standard("0.1", "This is a hello world example.", "Hello World TA");
-    optee_utee_build::build(RustEdition::Before2024, proto::UUID, config)
+impl From<std::io::Error> for Error {
+    fn from(value: std::io::Error) -> Self {
+        Self::IO(value)
+    }
+}
 
+impl From<std::env::VarError> for Error {
+    fn from(value: std::env::VarError) -> Self {
+        Self::Env(value)
+    }
+}
+
+impl From<uuid::Error> for Error {
+    fn from(value: uuid::Error) -> Self {
+        Self::UUID(value)
+    }
 }
