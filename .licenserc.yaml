@@ -31,3 +31,4 @@ header:
     - 'DISCLAIMER-WIP'
     - '*.json'
     - 'examples/tls_server-rs/ta/test-ca/**'
+    - './optee-utee-build/test_files/**'
