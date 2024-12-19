@@ -31,7 +31,7 @@ BUILDER = $(if $(STD),xargo,cargo)
 all: ta strip sign
 
 ta:
-	@$(BUILDER) build --target $(TARGET) --release
+	@$(BUILDER) build --target $(TARGET) --release --config $(LINKER_CFG)
 
 strip: ta
 	@$(OBJCOPY) --strip-unneeded $(OUT_DIR)/ta $(OUT_DIR)/stripped_ta
