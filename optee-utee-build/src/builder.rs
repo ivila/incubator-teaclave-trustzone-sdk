@@ -59,8 +59,10 @@ impl Config {
     }
 
     fn write_and_link_ta_lds(&self, out: PathBuf, ta_dev_kit_dir: PathBuf) -> Result<(), Error> {
+        const ENV_TARGET_TA: &str = "TARGET_TA";
+        println!("cargo:rerun-if-env-changed={}", ENV_TARGET_TA);
         let mut aarch64_flag = true;
-        match env::var("TARGET") {
+        match env::var(ENV_TARGET_TA) {
             Ok(ref v) if v == "arm-unknown-linux-gnueabihf" || v == "arm-unknown-optee" => {
                 println!("cargo:rustc-link-arg=--no-warn-mismatch");
                 aarch64_flag = false;
