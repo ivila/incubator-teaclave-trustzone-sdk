@@ -16,26 +16,19 @@
 // under the License.
 
 #![no_std]
+use num_enum::{FromPrimitive, IntoPrimitive};
 
+#[derive(FromPrimitive, IntoPrimitive)]
+#[repr(u32)]
 pub enum Command {
     GenKey,
     GetSize,
     Encrypt,
     Decrypt,
+    #[default]
     Unknown,
 }
 
-impl From<u32> for Command {
-    #[inline]
-    fn from(value: u32) -> Command {
-        match value {
-            0 => Command::GenKey,
-            1 => Command::GetSize,
-            2 => Command::Encrypt, 
-            3 => Command::Decrypt,
-            _ => Command::Unknown,
-        }
-    }
-}
-
-pub const UUID: &str = &include_str!(concat!(env!("OUT_DIR"), "/uuid.txt"));
+// You can use `truncate -s 36 uuid.txt` to remove the extra newline at the end 
+// of `uuid.txt`.
+pub const UUID: &str = &include_str!("../../uuid.txt");

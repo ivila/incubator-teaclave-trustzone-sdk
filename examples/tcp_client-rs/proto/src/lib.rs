@@ -32,4 +32,6 @@ pub enum IpVersion {
     V6 = 2,
 }
 
-pub const UUID: &str = &include_str!(concat!(env!("OUT_DIR"), "/uuid.txt"));
+// You can use `truncate -s 36 uuid.txt` to remove the extra newline at the end 
+// of `uuid.txt`.
+pub const UUID: &str = &include_str!("../../uuid.txt");
