@@ -33,6 +33,7 @@ jobs:
           # Setup Rust and toolchains
           ./setup.sh
           source "$HOME/.cargo/env"
+          rustup toolchain install nightly-2025-01-16-x86_64-unknown-linux-gnu
  
           # Build optee_os and optee_client for qemu_v8
           ./build_optee_libraries.sh $HOME
@@ -49,6 +50,9 @@ jobs:
           # Build Rust optee-utee and optee-teec
           (cd optee-utee && cargo build --target aarch64-unknown-linux-gnu -vv)
           (cd optee-teec && cargo build --target aarch64-unknown-linux-gnu -vv)
+
+          # Build No-STD projects
+          (cd projects/deep_learning && make)
 
   build-and-test-examples:
     runs-on: ubuntu-latest
