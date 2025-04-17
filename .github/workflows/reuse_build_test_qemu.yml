@@ -50,7 +50,6 @@ jobs:
           
       - name: Checkout OP-TEE repository
         run: |
-          pwd &&
           mkdir -p ${{ env.QEMUV8_BUILD_FOLDER }} && 
           cd ${{ env.QEMUV8_BUILD_FOLDER }} &&
           repo init -u https://github.com/OP-TEE/manifest.git -m qemu_v8.xml &&
@@ -58,18 +57,16 @@ jobs:
 
       - name: Apply patches for IPV6 support
         run: |
-          pwd &&
-          ls -lh ${{ github.workspace }} &&
-          ls -lh ${{ github.workspace }}/.patches &&
-          ls -lh ${{ github.workspace }}/.patches/test_qemu &&
-          (cd ${{ env.QEMUV8_BUILD_FOLDER }}/build && git apply ${{ github.workspace }}/.patches/test_qemu/optee-build_ipv6_support.patch)
+          ls -lh $GITHUB_WORKSPACE &&
+          ls -lh $GITHUB_WORKSPACE/.patches/test_qemu &&
+          (cd ${{ env.QEMUV8_BUILD_FOLDER }}/build && git apply $GITHUB_WORKSPACE/.patches/test_qemu/optee-build_ipv6_support.patch)
 
       - name: Apply patches to expand memory
         if: ${{ inputs.expand-memory == true }}
         run: |
-          (cd ${{ env.QEMUV8_BUILD_FOLDER }}/build && git apply ${{ github.workspace }}/.patches/test_qemu/optee-build_expand_memory.patch)
-          (cd ${{ env.QEMUV8_BUILD_FOLDER }}/qemu && git apply ${{ github.workspace }}/.patches/test_qemu/qemu-qemu_expand_secure_memory.patch)
-          (cd ${{ env.QEMUV8_BUILD_FOLDER }}/trusted-firmware-a && git apply ${{ github.workspace }}/.patches/test_qemu/arm-atf_expand_secure_memory.patch)
+          (cd ${{ env.QEMUV8_BUILD_FOLDER }}/build && git apply $GITHUB_WORKSPACE/.patches/test_qemu/optee-build_expand_memory.patch)
+          (cd ${{ env.QEMUV8_BUILD_FOLDER }}/qemu && git apply $GITHUB_WORKSPACE/.patches/test_qemu/qemu-qemu_expand_secure_memory.patch)
+          (cd ${{ env.QEMUV8_BUILD_FOLDER }}/trusted-firmware-a && git apply $GITHUB_WORKSPACE/.patches/test_qemu/arm-atf_expand_secure_memory.patch)
 
       - name: Build And Pack
         run: |
