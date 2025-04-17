@@ -50,6 +50,7 @@ jobs:
           
       - name: Checkout OP-TEE repository
         run: |
+          pwd &&
           mkdir -p ${{ env.QEMUV8_BUILD_FOLDER }} && 
           cd ${{ env.QEMUV8_BUILD_FOLDER }} &&
           repo init -u https://github.com/OP-TEE/manifest.git -m qemu_v8.xml &&
@@ -57,9 +58,10 @@ jobs:
 
       - name: Apply patches for IPV6 support
         run: |
-          ls -lh ${{ github.workspace }}
-          ls -lh ${{ github.workspace }}/.patches
-          ls -lh ${{ github.workspace }}/.patches/test_qemu
+          pwd &&
+          ls -lh ${{ github.workspace }} &&
+          ls -lh ${{ github.workspace }}/.patches &&
+          ls -lh ${{ github.workspace }}/.patches/test_qemu &&
           (cd ${{ env.QEMUV8_BUILD_FOLDER }}/build && git apply ${{ github.workspace }}/.patches/test_qemu/optee-build_ipv6_support.patch)
 
       - name: Apply patches to expand memory
