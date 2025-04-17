@@ -70,7 +70,7 @@ jobs:
 
       - name: Build And Pack
         run: |
-          cd ~/optee-qemuv8 &&
+          cd ${{ env.QEMUV8_BUILD_FOLDER }} &&
           cd build &&
           make toolchains -j$(nproc) &&
           make all -j$(nproc)
