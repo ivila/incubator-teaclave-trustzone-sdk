@@ -1,0 +1,12 @@
+diff --git a/qemu_v8.mk b/qemu_v8.mk
+index 91370b5..cb7d6ee 100644
+--- a/qemu_v8.mk
++++ b/qemu_v8.mk
+@@ -103,6 +103,7 @@ KERNEL_ENTRY		?= 0x42200000
+ KERNEL_LOADADDR		?= 0x42200000
+ ROOTFS_ENTRY		?= 0x45000000
+ ROOTFS_LOADADDR		?= 0x45000000
++OPTEE_OS_COMMON_EXTRA_FLAGS     += CFG_TZDRAM_SIZE=0x01f00000 CFG_PGT_CACHE_ENTRIES=32
+ 
+ ifeq ($(SPMC_AT_EL),2)
+ BL32_DEPS		?= hafnium optee-os
