@@ -33,7 +33,7 @@ jobs:
     with:
       runs-on: ubuntu-latest
       container: ghcr.io/ivila/teaclave-trustzone-sdk-ci-runner:ubuntu-24.04
-      output-name: optee-qemuv8-ubuntu-24.04-expand-ta-memory
+      output-name: amd64-host-optee-qemuv8-ubuntu-24.04-expand-ta-memory
       expand-memory: true
 
   amd64-ubuntu24:
@@ -41,7 +41,7 @@ jobs:
     with:
       runs-on: ubuntu-latest
       container: ghcr.io/ivila/teaclave-trustzone-sdk-ci-runner:ubuntu-24.04
-      output-name: optee-qemuv8-ubuntu-24.04
+      output-name: amd64-host-optee-qemuv8-ubuntu-24.04
       expand-memory: true
 
   arm64-ubuntu24-expand-ta-memory:
@@ -49,7 +49,7 @@ jobs:
     with:
       runs-on: ubuntu-24.04-arm
       container: ghcr.io/ivila/teaclave-trustzone-sdk-ci-runner:ubuntu-24.04
-      output-name: optee-qemuv8-ubuntu-24.04-expand-ta-memory
+      output-name: arm64-host-optee-qemuv8-ubuntu-24.04-expand-ta-memory
       expand-memory: false
 
   arm64-ubuntu24:
@@ -57,5 +57,5 @@ jobs:
     with:
       runs-on: ubuntu-24.04-arm
       container: ghcr.io/ivila/teaclave-trustzone-sdk-ci-runner:ubuntu-24.04
-      output-name: optee-qemuv8-ubuntu-24.04
+      output-name: arm64-host-optee-qemuv8-ubuntu-24.04
       expand-memory: false

@@ -60,6 +60,9 @@ jobs:
 
       - name: Apply patches for IPV6 support
         run: |
+          ls -lh ${{ github.workspace }}
+          ls -lh ${{ github.workspace }}/.patches
+          ls -lh ${{ github.workspace }}/.patches/test_qemu
           (cd ${{ env.QEMUV8_BUILD_FOLDER }}/build && git apply ${{ github.workspace }}/.patches/test_qemu/optee-build_ipv6_support.patch)
 
       - name: Apply patches to expand memory
