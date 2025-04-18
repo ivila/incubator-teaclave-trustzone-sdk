@@ -82,7 +82,7 @@ jobs:
           mkdir -p $GITHUB_WORKSPACE/out &&
           cd ${{ env.OUTPUT_FOLDER }} &&
           cd .. &&
-          tar -czvf $GITHUB_WORKSPACE/out/$(uname -m)-${{ inputs.output-name }}.tar.gz ${{ inputs.output-name }}
+          tar -czvf $GITHUB_WORKSPACE/out/${{ inputs.output-name }}.tar.gz ${{ inputs.output-name }}
 
       - name: Upload
         uses: actions/upload-artifact@v4
