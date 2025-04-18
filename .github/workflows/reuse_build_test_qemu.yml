@@ -78,11 +78,14 @@ jobs:
           mkdir -p ${{ env.OUTPUT_FOLDER }} &&
           cp ${{ env.QEMUV8_BUILD_FOLDER }}/out/bin/* ${{ env.OUTPUT_FOLDER }} &&
           cp ${{ env.QEMUV8_BUILD_FOLDER }}/qemu/build/qemu-system-aarch64 ${{ env.OUTPUT_FOLDER }} &&
-          tar -czvf ${{ inputs.output-name }}.tar.gz ${{ env.OUTPUT_FOLDER }}
+          mkdir -p out &&
+          cd out &&
+          tar -czvf $(uname -m)-${{ inputs.output-name }}.tar.gz ${{ env.OUTPUT_FOLDER }}
 
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: ${{ inputs.output-name }}
           path: |
-            ${{ inputs.output-name }}.tar.gz
+            out/*
+          if-no-files-found: error
