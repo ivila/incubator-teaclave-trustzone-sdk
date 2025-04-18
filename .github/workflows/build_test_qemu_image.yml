@@ -31,7 +31,7 @@ defaults:
 
 jobs:
   amd64-ubuntu24-expand-ta-memory:
-    uses: ./.github/workflows/reuse_build_test_qemu.yml
+    uses: ./.github/workflows/reuse_build_test_qemu_image.yml
     with:
       runs-on: ubuntu-latest
       container: ghcr.io/ivila/teaclave-trustzone-sdk-ci-runner:ubuntu-24.04
@@ -39,23 +39,23 @@ jobs:
       expand-memory: true
 
   amd64-ubuntu24:
-    uses: ./.github/workflows/reuse_build_test_qemu.yml
+    uses: ./.github/workflows/reuse_build_test_qemu_image.yml
     with:
       runs-on: ubuntu-latest
       container: ghcr.io/ivila/teaclave-trustzone-sdk-ci-runner:ubuntu-24.04
       output-name: optee-qemuv8-ubuntu-24.04
-      expand-memory: true
+      expand-memory: false
 
   arm64-ubuntu24-expand-ta-memory:
-    uses: ./.github/workflows/reuse_build_test_qemu.yml
+    uses: ./.github/workflows/reuse_build_test_qemu_image.yml
     with:
       runs-on: ubuntu-24.04-arm
       container: ghcr.io/ivila/teaclave-trustzone-sdk-ci-runner:ubuntu-24.04
       output-name: optee-qemuv8-ubuntu-24.04-expand-ta-memory
-      expand-memory: false
+      expand-memory: true
 
   arm64-ubuntu24:
-    uses: ./.github/workflows/reuse_build_test_qemu.yml
+    uses: ./.github/workflows/reuse_build_test_qemu_image.yml
     with:
       runs-on: ubuntu-24.04-arm
       container: ghcr.io/ivila/teaclave-trustzone-sdk-ci-runner:ubuntu-24.04
