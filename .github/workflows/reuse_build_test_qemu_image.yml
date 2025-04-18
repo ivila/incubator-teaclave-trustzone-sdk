@@ -73,14 +73,16 @@ jobs:
           cd ${{ env.QEMUV8_BUILD_FOLDER }} &&
           cd build &&
           make toolchains -j$(nproc) &&
-          make all -j$(nproc)
+          make all -j$(nproc) &&
 
           mkdir -p ${{ env.OUTPUT_FOLDER }} &&
           cp ${{ env.QEMUV8_BUILD_FOLDER }}/out/bin/* ${{ env.OUTPUT_FOLDER }} &&
           cp ${{ env.QEMUV8_BUILD_FOLDER }}/qemu/build/qemu-system-aarch64 ${{ env.OUTPUT_FOLDER }} &&
-          mkdir -p out &&
-          cd out &&
-          tar -czvf $(uname -m)-${{ inputs.output-name }}.tar.gz ${{ env.OUTPUT_FOLDER }}
+
+          mkdir -p $GITHUB_WORKSPACE/out &&
+          cd ${{ env.OUTPUT_FOLDER }} &&
+          cd .. &&
+          tar -czvf $GITHUB_WORKSPACE/out/$(uname -m)-${{ inputs.output-name }}.tar.gz ${{ inputs.output-name }}
 
       - name: Upload
         uses: actions/upload-artifact@v4

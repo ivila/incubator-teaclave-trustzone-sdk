@@ -15,11 +15,13 @@
 # specific language governing permissions and limitations
 # under the License.
 
-# This action provides a standardized and reproducible way to build a Qemu
-# packages for later usage.
+# This action provides a standardized and reproducible way to build QEMU images
+# for future use.
 #
+# It's particularly valuable for maintainers to regenerate images and keep them
+# synchronized with OP-TEE changes.
 
-name: Build Test Qemu
+name: Build Test Qemu Image
 
 on: [workflow_dispatch, push]
 
