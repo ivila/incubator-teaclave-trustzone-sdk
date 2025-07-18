@@ -93,3 +93,4 @@ else
   echo -e "Error: OPTEE_CLIENT_EXPORT=$OPTEE_CLIENT_EXPORT does not exist, please set the correct OPTEE_CLIENT_EXPORT or run \"$ ./build_optee_libraries.sh optee/\" then try again\n"
   unset OPTEE_DIR
 fi
+
